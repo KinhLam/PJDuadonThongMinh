@@ -1,14 +1,18 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import CustomButton from '../components/CustomButton';
 
 const WelcomeScreen = () => {
+  const navigation = useNavigation();
+
   const handleRegisterPress = () => {
-    console.log('Đăng Ký pressed!');
+    navigation.navigate('RegisterScreen');
   };
 
   const handleLoginPress = () => {
-    console.log('Đăng Nhập pressed!');
+    navigation.navigate('LoginScreen');
   };
 
   return (
