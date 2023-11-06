@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import IconBack from '../components/IconBack';
 import CustomButton from '../components/CustomButton';
 
-const RegisterScreen = () => {
+const LoginNumberScreen = () => {
   const navigation = useNavigation();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [error, setError] = useState(''); // State để lưu thông báo lỗi
@@ -41,7 +41,7 @@ const RegisterScreen = () => {
         <Image source={require('../assets/car.gif')} style={styles.logo} />
       </View>
       <View style={styles.titleContainer}>
-        <Text style={[styles.title, styles.registerTitle]}>Đăng ký</Text>
+        <Text style={[styles.title, styles.registerTitle]}>Bắt đầu</Text>
       </View>
       <View style={styles.inputContainer}>
         <View
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
   registerTitle: {
     fontSize: 30,
     fontWeight: 'bold',
+    marginTop: 15,
   },
   inputContainer: {
     flex: 1,
@@ -150,4 +151,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterScreen;
+export default LoginNumberScreen;

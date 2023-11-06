@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import LoginScreen from './src/screens/LoginScreen';
+import LoginNumberScreen from './src/screens/LoginNumberScreen';
 // import CustomIcon from './src/components/CustomIcon';
 import IconBack from './src/components/IconBack';
 import OTPScreen from './src/screens/OTPScreen';
@@ -23,12 +24,29 @@ const App = () => {
           name="RegisterScreen"
           component={RegisterScreen}
           options={{
-            headerShown: false, }}
+            headerShown: false,
+          }}
         />
 
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name='OTPScreen' component={OTPScreen} options={{
-            headerShown: false, }}/>
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="OTPScreen"
+          component={OTPScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="LoginNumberScreen"
+          component={LoginNumberScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
