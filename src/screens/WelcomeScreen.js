@@ -12,7 +12,8 @@ const WelcomeScreen = () => {
   };
 
   const handleLoginPress = () => {
-    navigation.navigate('LoginScreen');
+    // navigation.navigate('LoginScreen');
+    navigation.navigate('HomeTabNavigator');
   };
 
   return (

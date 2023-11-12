@@ -19,7 +19,7 @@ const OTPScreen = ({  }) => {
   const handleVerifyOTP = () => {
     // Xử lý sự kiện xác minh OTP
     // Sau khi xác minh thành công, bạn có thể chuyển đến màn hình tiếp theo
-    navigation.navigate('WelcomeScreen');
+    navigation.navigate('HomeScreen');
     
   };
 
