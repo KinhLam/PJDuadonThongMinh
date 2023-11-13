@@ -16,6 +16,7 @@ import HomeScreen from './src/screens/Home/HomeScreen';
 import NotificationScreen from './src/screens/Home/NotificationScreen';
 import PayScreen from './src/screens/Home/PayScreen';
 import UserScreen from './src/screens/Home/UserScreen';
+import ActivePageScreen from './src/screens/Home/ActivePageScreen';
 
 // Components
 import IconBack from './src/components/IconBack';
@@ -29,20 +30,22 @@ const HomeTabNavigator = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarStyle: {
-          height: 60, // Adjust the height of the bottom tab bar
+          height: 70, 
+          paddingBottom: 15,
         },
         tabBarLabelStyle: {
-          fontSize: 14, // Adjust the font size of the label
+          fontSize: 12,
         },
         tabBarIconStyle: {
-          width: 30, // Adjust the size of the icon
+          width: 30,
           height: 30,
         },
       })}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Notification" component={NotificationScreen} />
-      <Tab.Screen name="Pay" component={PayScreen} />
-      <Tab.Screen name="User" component={UserScreen} />
+      <Tab.Screen name="Trang chủ" component={HomeScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Hoạt động" component={ActivePageScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Thanh toán" component={PayScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Tin nhắn" component={NotificationScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Tài khoản" component={UserScreen} options={{headerShown: false}}/>
     </Tab.Navigator>
   );
 };
