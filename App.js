@@ -18,18 +18,23 @@ import PayScreen from './src/screens/Home/PayScreen';
 import UserScreen from './src/screens/Home/UserScreen';
 import ActivePageScreen from './src/screens/Home/ActivePageScreen';
 
+//Traffic
+import TransportScreen from './src/screens/traffic/TransportScreen';
+import LoTrinh_DatXe from './src/screens/traffic/LoTrinhDatXeScreen';
+
 // Components
 import IconBack from './src/components/IconBack';
-import Ionicons  from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
 
 // Bottom Tab Navigator
 const HomeTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={({route}) => ({
         tabBarStyle: {
           height: 70,
           paddingBottom: 15,
@@ -37,7 +42,7 @@ const HomeTabNavigator = () => {
         tabBarLabelStyle: {
           fontSize: 12,
         },
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
           if (route.name === 'Trang chủ') {
@@ -55,32 +60,31 @@ const HomeTabNavigator = () => {
           // Return the Ionicons component with the correct name
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-      })}
-    >
+      })}>
       <Tab.Screen
         name="Trang chủ"
         component={HomeScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Tab.Screen
         name="Hoạt động"
         component={ActivePageScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Tab.Screen
         name="Thanh toán"
         component={PayScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Tab.Screen
         name="Tin nhắn"
         component={NotificationScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Tab.Screen
         name="Tài khoản"
         component={UserScreen}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
     </Tab.Navigator>
   );
@@ -119,6 +123,16 @@ const App = () => {
         <Stack.Screen
           name="HomeTabNavigator"
           component={HomeTabNavigator}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="TransportScreen"
+          component={TransportScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="LoTrinh_DatXe"
+          component={LoTrinh_DatXe}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
