@@ -20,6 +20,7 @@ import ActivePageScreen from './src/screens/Home/ActivePageScreen';
 
 // Components
 import IconBack from './src/components/IconBack';
+import Ionicons  from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,24 +29,59 @@ const Tab = createBottomTabNavigator();
 const HomeTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         tabBarStyle: {
-          height: 70, 
+          height: 70,
           paddingBottom: 15,
         },
         tabBarLabelStyle: {
           fontSize: 12,
         },
-        tabBarIconStyle: {
-          width: 30,
-          height: 30,
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Trang chủ') {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Hoạt động') {
+            iconName = focused ? 'paper-plane' : 'paper-plane-outline';
+          } else if (route.name === 'Thanh toán') {
+            iconName = focused ? 'cash' : 'cash-outline';
+          } else if (route.name === 'Tin nhắn') {
+            iconName = focused ? 'chatbubbles' : 'chatbubbles-outline';
+          } else if (route.name === 'Tài khoản') {
+            iconName = focused ? 'person' : 'person-outline';
+          }
+
+          // Return the Ionicons component with the correct name
+          return <Ionicons name={iconName} size={size} color={color} />;
         },
-      })}>
-      <Tab.Screen name="Trang chủ" component={HomeScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Hoạt động" component={ActivePageScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Thanh toán" component={PayScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Tin nhắn" component={NotificationScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Tài khoản" component={UserScreen} options={{headerShown: false}}/>
+      })}
+    >
+      <Tab.Screen
+        name="Trang chủ"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Hoạt động"
+        component={ActivePageScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Thanh toán"
+        component={PayScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Tin nhắn"
+        component={NotificationScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Tài khoản"
+        component={UserScreen}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 };
