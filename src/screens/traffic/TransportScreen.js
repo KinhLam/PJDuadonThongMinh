@@ -55,7 +55,7 @@ const [width, setWidth] = useState('');
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
 
-        <Text style={styles.textheader1}>Đặt chuyến đi</Text>
+        <Text style={styles.textheader1}>Đặt xe</Text>
       </View>
       <View style={styles.TextInputView}>
         {renderInput("Tên người gửi:", "Họ và tên", nameSender, setNameSender)}

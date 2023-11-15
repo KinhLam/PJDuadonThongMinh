@@ -21,7 +21,8 @@ import ActivePageScreen from './src/screens/Home/ActivePageScreen';
 //Traffic
 import TransportScreen from './src/screens/traffic/TransportScreen';
 import LoTrinh_DatXe from './src/screens/traffic/LoTrinhDatXeScreen';
-
+import LoTrinhChuyenDiScreen from './src/screens/traffic/LoTrinhChuyenDiScreen';
+import HoanThanhChuyenXeScreen from './src/screens/traffic/HoanThanhChuyenXeScreen';
 // Components
 import IconBack from './src/components/IconBack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -133,6 +134,16 @@ const App = () => {
         <Stack.Screen
           name="LoTrinh_DatXe"
           component={LoTrinh_DatXe}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="HoanThanhChuyenXeScreen"
+          component={HoanThanhChuyenXeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="LoTrinhChuyenDiScreen"
+          component={LoTrinhChuyenDiScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
