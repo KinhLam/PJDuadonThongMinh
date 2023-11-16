@@ -193,7 +193,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 10,
         alignItems: 'center',
-        borderRadius: 10
     },
     TextInputView: {
         backgroundColor: '#FF9736',
@@ -264,17 +263,14 @@ const styles = StyleSheet.create({
         marginRight: 35,
         backgroundColor: '#FF9736',
         padding: 12,
-        borderRadius: 10
-
+        borderRadius: 10,
     },
     TextTotal: {
         fontSize: 15,
         fontWeight: 'bold',
-
-    },
-    TextTotal: {
         textAlign: 'center',
         color: '#FFFFFF'
+
     },
     buttonDatXe1: {
         backgroundColor: '#F9E31E',
