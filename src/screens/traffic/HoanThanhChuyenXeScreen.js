@@ -97,7 +97,7 @@ const HoanThanhChuyenXeScreen = () => {
                             />
                         </ScrollView>
                     </View>
-                    <CustomButton style={[styles.button, { backgroundColor: '#FF9736' }]}
+                    <CustomButton style={[styles.button, { backgroundColor: '#FF9736'}]}
             textStyle={styles.buttonText} title={"Xác nhận"}/>
                 </View>
             </View>
@@ -190,5 +190,13 @@ const styles = StyleSheet.create({
     },
     textbottom1: {
         textAlign: 'center',
+    },
+    button:{
+        
+        padding: 1,
+        marginLeft:40,
+        marginRight: 40,
+        marginBottom: 40,
+
     },
 });

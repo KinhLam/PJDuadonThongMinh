@@ -3,6 +3,9 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+// Select Screens
+import SelectScreens from './src/screens/ScreensUserOrDriver/SelectScreens';
+import ScrennsDriver from './src/screens/Driver/ScrennsDriver';
 
 // Login
 import WelcomeScreen from './src/screens/WelcomeScreen';
@@ -26,6 +29,7 @@ import HoanThanhChuyenXeScreen from './src/screens/traffic/HoanThanhChuyenXeScre
 // Components
 import IconBack from './src/components/IconBack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -95,15 +99,25 @@ const HomeTabNavigator = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="WelcomeScreen">
+      <Stack.Navigator initialRouteName="SelectScreens">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="SelectScreens"
+          component={SelectScreens}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="RegisterScreen"
           component={RegisterScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ScrennsDriver"
+          component={ScrennsDriver}
           options={{headerShown: false}}
         />
         <Stack.Screen
