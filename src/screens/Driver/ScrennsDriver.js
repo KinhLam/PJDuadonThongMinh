@@ -27,15 +27,15 @@ const ScrennsDriver = () => {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <View style={[styles.buttonContainer, styles.leftButtonContainer]}>
+        {/* <View style={[styles.buttonContainer, styles.leftButtonContainer]}>
           <CustomButton
             title="Đăng ký tài mới"
             onPress={handleTaixePress}
             mode="contained"
-            style={[styles.button, { backgroundColor: '#C5EFD0',  }]}
+            style={[styles.button, { backgroundColor: '#C5EFD0'}]}
             textStyle={styles.buttonTextLeft}
           />
-        </View>
+        </View> */}
         <View style={[styles.buttonContainer, styles.rightButtonContainer]}>
           <CustomButton
             title="Đăng nhập"
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerText: {
-    fontSize: 36,
+    fontSize: 33,
     fontWeight: 'bold',
     color: 'black',
   },
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     overflow: 'hidden',
+    padding: 20
   },
   leftButtonContainer: {
     marginRight: 5,
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontWeight: '300',
-    color: '221918',
+    color: '#221918',
   },
 });
 
