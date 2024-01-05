@@ -38,10 +38,10 @@ const LoginNumberScreen = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.logoContainer}>
-        <Image source={require('../assets/car.gif')} style={styles.logo} />
+        <Image source={require('../assets/driver-bro.png')} style={styles.logo} />
       </View>
       <View style={styles.titleContainer}>
-        <Text style={[styles.title, styles.registerTitle]}>Bắt đầu</Text>
+        <Text style={[styles.title, styles.registerTitle]}>Xin chào!</Text>
       </View>
       <View style={styles.inputContainer}>
         <View
@@ -70,7 +70,7 @@ const LoginNumberScreen = () => {
           title="Tiếp tục"
           onPress={handleContinue}
           mode="contained"
-          style={[styles.button, { backgroundColor: '#FF725E' }]
+          style={[styles.button, { backgroundColor: '#DE720F' }]
           }
           textStyle={styles.buttonText}
         />
@@ -82,7 +82,7 @@ const LoginNumberScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 30,
   },
   header: {
     flexDirection: 'row',
@@ -91,17 +91,17 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   logoContainer: {
-    flex: 2,
+    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   logo: {
-    width: 300,
-    height: 300,
+    width: 308,
+    height: 250,
     marginTop: '10%',
   },
   titleContainer: {
-    flex: 1,
+    // flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
@@ -110,16 +110,15 @@ const styles = StyleSheet.create({
   },
   registerTitle: {
     fontSize: 30,
-    fontWeight: 'bold',
-    marginTop: 15,
+    fontWeight: '500',
+    // marginTop: '20%',
   },
   inputContainer: {
-    flex: 1,
+    marginTop: '10%',
     justifyContent: 'center',
+    padding: 5,
   },
   inputWrapper: {
-    borderColor: 'gray',
-    borderWidth: 1,
     borderRadius: 20,
     marginBottom: 10, // Khoảng cách từ input đến thông báo lỗi
   },
@@ -127,18 +126,23 @@ const styles = StyleSheet.create({
     borderColor: 'red', // Màu viền đỏ khi có lỗi
   },
   input: {
-    height: 55,
-    paddingLeft: 10,
+    height: 60,
+    padding: 20,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: '#d8cdcd',
   },
   buttonContainer: {
-    flex: 1,
+    // justifyContent: 'center',
+    display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   button: {
-    backgroundColor: 'blue',
+    // height: ,
+    width: '80%',
     padding: 10,
-    borderRadius: 30,
-    alignItems: 'center',
+    borderRadius: 15,
   },
   buttonText: {
     fontSize: 18,

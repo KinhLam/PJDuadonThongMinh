@@ -25,6 +25,14 @@ const LoginScreen = () => {
     navigation.navigate('LoginNumberScreen');
   };
 
+  const handleContinueGoogle = () => {
+    // Kiểm tra nếu số điện thoại chưa được nhập hoặc không đúng định dạng
+
+    // Xử lý sự kiện khi nhấn nút "Tiếp tục"
+    // console.log('Số điện thoại: ', phoneNumber);
+    navigation.navigate('HomeTabNavigator');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -41,7 +49,7 @@ const LoginScreen = () => {
       <View style={styles.buttonContainer}>
         <CustomButton
           title="Tiếp tục với google"
-          onPress={handleContinue}
+          onPress={handleContinueGoogle}
           mode="contained"
           style={[
             styles.button,
