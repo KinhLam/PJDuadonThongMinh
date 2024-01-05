@@ -1,20 +1,39 @@
-import React from 'react';
-import {View, Text, Image, StyleSheet, Pressable, Platform} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, StyleSheet, Pressable, Platform, ActivityIndicator } from 'react-native';
+import { useNavigation, useIsFocused  } from '@react-navigation/native';
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleTaixePress = () => {
-    navigation.navigate('ScrennsDriver');
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      navigation.navigate('LoginScreen');
+    }, 2000);
 
-  const handleKhachHangPress = () => {
-    navigation.navigate('WelcomeScreen');
-  };
+    // Clear the timeout if the component unmounts or loses focus
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [navigation, isFocused, ]);
+
+  // Listen for changes in navigation state
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      // Prevent going back to WelcomeScreen when the back button is pressed
+      if (!isLoading && navigation.isFocused()) {
+        e.preventDefault();
+      }
+    });
+
+    // Cleanup the subscription when the component is unmounted
+    return unsubscribe;
+  }, [navigation, isLoading]);
 
   return (
-    <Pressable style={styles.container} android_ripple={{color: "#289c0e"}}>
+    <Pressable style={styles.container} android_ripple={{ color: "#289c0e" }}>
       <View style={styles.header}>
         <Text style={styles.headerText}>SMARTCAR</Text>
       </View>
@@ -25,6 +44,10 @@ const WelcomeScreen = () => {
           style={styles.logo}
         />
       </View>
+
+      {isLoading ? (
+        <ActivityIndicator style={styles.loadingIndicator} color="#FFFFFF" size="large" />
+      ) : null}
     </Pressable>
   );
 };
@@ -89,6 +112,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '300',
     color: 'white',
+  },
+  loadingIndicator: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginLeft: -20, 
+    marginTop: -20,  
   },
 });
 

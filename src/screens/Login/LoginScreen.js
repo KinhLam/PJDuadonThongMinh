@@ -1,51 +1,40 @@
-import React, {useState} from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
-  Text,
-  TextInput,
-  TouchableOpacity,
   StyleSheet,
   Image,
+  BackHandler 
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import IconBack from '../../components/IconBack';
 import CustomButton from '../../components/CustomButton';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [error, setError] = useState(''); // State để lưu thông báo lỗi
-  const [isError, setIsError] = useState(false); // State để xác định xem có lỗi hay không
 
   const handleContinue = () => {
-    // Kiểm tra nếu số điện thoại chưa được nhập hoặc không đúng định dạng
-
-    // Xử lý sự kiện khi nhấn nút "Tiếp tục"
-    console.log('Số điện thoại: ', phoneNumber);
     navigation.navigate('LoginNumberScreen');
   };
 
   const handleContinueGoogle = () => {
-    // Kiểm tra nếu số điện thoại chưa được nhập hoặc không đúng định dạng
-
-    // Xử lý sự kiện khi nhấn nút "Tiếp tục"
-    // console.log('Số điện thoại: ', phoneNumber);
     navigation.navigate('HomeTabNavigator');
   };
 
+  //Hàm không cho người dùng quay lại khi ấn nút điều hướng trở về
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      // Không cho phép người dùng quay về trang trước
+      return true;
+    });
+
+    // Cleanup the event listener when the component is unmounted
+    return () => backHandler.remove();
+  }, []); 
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <IconBack />
-        </TouchableOpacity>
-      </View>
       <View style={styles.logoContainer}>
         <Image source={require('../../assets/car.gif')} style={styles.logo} />
       </View>
-      {/* <View style={styles.titleContainer}>
-        <Text style={[styles.title, styles.registerTitle]}>Đăng nhập</Text>
-      </View> */}
       <View style={styles.buttonContainer}>
         <CustomButton
           title="Tiếp tục với google"
