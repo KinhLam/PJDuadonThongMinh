@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import WelcomeScreen from '../../screens/WelcomeScreen';
+import WelcomeScreen from '../Login/WelcomeScreen';
 import CustomButton from '../../components/CustomButton';
 
 const ScrennsDriver = () => {

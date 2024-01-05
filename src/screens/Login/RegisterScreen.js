@@ -8,8 +8,8 @@ import {
   Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import IconBack from '../components/IconBack';
-import CustomButton from '../components/CustomButton';
+import IconBack from '../../components/IconBack';
+import CustomButton from '../../components/CustomButton';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -38,7 +38,7 @@ const RegisterScreen = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.logoContainer}>
-        <Image source={require('../assets/car.gif')} style={styles.logo} />
+        <Image source={require('../../assets/car.gif')} style={styles.logo} />
       </View>
       <View style={styles.titleContainer}>
         <Text style={[styles.title, styles.registerTitle]}>Đăng ký</Text>

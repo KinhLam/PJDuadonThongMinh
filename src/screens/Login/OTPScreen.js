@@ -6,8 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import CustomButton from '../components/CustomButton';
-import IconBack from '../components/IconBack';
+import CustomButton from '../../components/CustomButton';
+import IconBack from '../../components/IconBack';
 import {useNavigation} from '@react-navigation/native';
 
 

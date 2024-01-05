@@ -1,18 +1,18 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, StatusBar} from 'react-native';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 // Select Screens
-import SelectScreens from './src/screens/ScreensUserOrDriver/SelectScreens';
 import ScrennsDriver from './src/screens/Driver/ScrennsDriver';
 
 // Login
-import WelcomeScreen from './src/screens/WelcomeScreen';
-import RegisterScreen from './src/screens/RegisterScreen';
-import LoginScreen from './src/screens/LoginScreen';
-import LoginNumberScreen from './src/screens/LoginNumberScreen';
-import OTPScreen from './src/screens/OTPScreen';
+import WelcomeScreen from './src/screens/Login/WelcomeScreen';
+import RegisterScreen from './src/screens/Login/RegisterScreen';
+import LoginScreen from './src/screens/Login/LoginScreen';
+import LoginNumberScreen from './src/screens/Login/LoginNumberScreen';
+import OTPScreen from './src/screens/Login/OTPScreen';
 
 // Home
 import HomeScreen from './src/screens/Home/HomeScreen';
@@ -22,10 +22,10 @@ import UserScreen from './src/screens/Home/UserScreen';
 import ActivePageScreen from './src/screens/Home/ActivePageScreen';
 
 //Traffic
-import TransportScreen from './src/screens/traffic/TransportScreen';
-import LoTrinh_DatXe from './src/screens/traffic/LoTrinhDatXeScreen';
-import LoTrinhChuyenDiScreen from './src/screens/traffic/LoTrinhChuyenDiScreen';
-import HoanThanhChuyenXeScreen from './src/screens/traffic/HoanThanhChuyenXeScreen';
+import TransportScreen from './src/screens/Traffic/TransportScreen';
+import LoTrinh_DatXe from './src/screens/Traffic/LoTrinhDatXeScreen';
+import LoTrinhChuyenDiScreen from './src/screens/Traffic/LoTrinhChuyenDiScreen';
+import HoanThanhChuyenXeScreen from './src/screens/Traffic/HoanThanhChuyenXeScreen';
 // Components
 import IconBack from './src/components/IconBack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -99,15 +99,11 @@ const HomeTabNavigator = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SelectScreens">
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <Stack.Navigator initialRouteName="WelcomeScreen">
         <Stack.Screen
           name="WelcomeScreen"
           component={WelcomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="SelectScreens"
-          component={SelectScreens}
           options={{headerShown: false}}
         />
         <Stack.Screen
