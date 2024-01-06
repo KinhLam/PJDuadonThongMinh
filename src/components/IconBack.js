@@ -1,11 +1,11 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import EntypoIcon from 'react-native-vector-icons/Entypo'; // Sử dụng icon từ Ionicons (bạn có thể chọn icon pack khác)
+import EntypoIcon from 'react-native-vector-icons/Entypo';
 
-const IconBack = ({ onPress }) => {
+const IconBack = ({ onPress, style }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={{ marginLeft: 10 }}>
-      <EntypoIcon name="chevron-left" size={20} color="#000000" />
+    <TouchableOpacity onPress={onPress} style={[{ padding: 10 }, style]}>
+      <EntypoIcon name="chevron-left" size={25} color="#000000" />
     </TouchableOpacity>
   );
 };

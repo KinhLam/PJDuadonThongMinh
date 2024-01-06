@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import IconBack from '../../components/IconBack';
 import CustomButton from '../../components/CustomButton';
 
@@ -21,8 +21,8 @@ const LoginNumberScreen = () => {
     // Kiểm tra nếu số điện thoại chưa được nhập hoặc không đúng định dạng
     if (!/^(0\d{9})$/.test(phoneNumber)) {
       setError('Vui lòng nhập đúng số điện thoại');
-      setIsError(true); 
-      return; 
+      setIsError(true);
+      return;
     }
 
     // Xử lý sự kiện khi nhấn nút "Tiếp tục"
@@ -30,15 +30,20 @@ const LoginNumberScreen = () => {
     navigation.navigate('OTPScreen');
   };
 
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <IconBack />
-        </TouchableOpacity>
+        <IconBack onPress={handleBackPress} style={styles.styleIcon} />
       </View>
       <View style={styles.logoContainer}>
-        <Image source={require('../../assets/driver-bro.png')} style={styles.logo} />
+        <Image
+          source={require('../../assets/driver-bro.png')}
+          style={styles.logo}
+        />
       </View>
       <View style={styles.titleContainer}>
         <Text style={[styles.title, styles.registerTitle]}>Xin chào!</Text>
@@ -48,14 +53,13 @@ const LoginNumberScreen = () => {
           style={[
             styles.inputWrapper,
             isError && styles.errorInputWrapper, // Sử dụng kiểu dáng errorInputWrapper nếu có lỗi
-          ]}
-        >
+          ]}>
           <TextInput
             placeholder="Số điện thoại"
             style={styles.input}
             keyboardType="numeric"
             value={phoneNumber}
-            onChangeText={(text) => {
+            onChangeText={text => {
               setPhoneNumber(text);
               setError(''); // Xóa thông báo lỗi khi người dùng thay đổi số điện thoại
               setIsError(false); // Gỡ đánh dấu có lỗi
@@ -70,8 +74,7 @@ const LoginNumberScreen = () => {
           title="Tiếp tục"
           onPress={handleContinue}
           mode="contained"
-          style={[styles.button, { backgroundColor: '#DE720F' }]
-          }
+          style={[styles.button, {backgroundColor: '#DE720F'}]}
           textStyle={styles.buttonText}
         />
       </View>

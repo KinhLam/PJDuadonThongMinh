@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const CustomButton = ({ title, onPress, style, textStyle }) => {
+const CustomButton = ({ title, onPress, style = {}, textStyle, uppercase }) => {
   const [isPressed, setIsPressed] = useState(false);
+  const buttonText = uppercase ? title.toUpperCase() : title;
 
   const handlePressIn = () => {
     setIsPressed(true);
@@ -21,17 +22,16 @@ const CustomButton = ({ title, onPress, style, textStyle }) => {
       style={[
         styles.button,
         style,
-        { backgroundColor: isPressed ? '#ccc' : style.backgroundColor },
+        { backgroundColor: isPressed ? '#ccc' : (style && style.backgroundColor) },
       ]}
     >
-      <Text style={[styles.text, textStyle]}>{title}</Text>
+      <Text style={[styles.text, textStyle]}>{buttonText}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    bottom: 20, // Adjust the bottom distance as needed
     width: '100%',
     padding: 30,
     borderRadius: 10,
