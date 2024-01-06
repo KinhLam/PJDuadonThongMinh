@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     position: 'absolute',
     padding: 20,
-    bottom: 20, // Adjust the bottom distance as needed
+    // bottom: 20, // Adjust the bottom distance as needed
     width: '100%',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -91,11 +91,13 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
   buttonUp: {
+    height: 55,
     padding: 10,
     borderRadius: 10,
     backgroundColor: '#4FAE5A',
   },
   buttonDown: {
+    height: 55,
     padding: 10,
     borderRadius: 10,
     borderColor: '#767676',
