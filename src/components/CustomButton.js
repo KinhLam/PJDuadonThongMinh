@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 
 const CustomButton = ({ onPress, title, mode, style, textStyle }) => {
   return (
