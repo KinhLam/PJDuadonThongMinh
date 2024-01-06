@@ -13,7 +13,6 @@ import RegisterScreen from './src/screens/Login/RegisterScreen';
 import SelectLoginScreen from './src/screens/Login/SelectLoginScreen';
 import LoginScreen from './src/screens/Login/LoginScreen';
 import LoginNumberScreen from './src/screens/Login/LoginNumberScreen';
-import OTPScreen from './src/screens/Login/OTPScreen';
 
 // Home
 import HomeScreen from './src/screens/Home/HomeScreen';
@@ -128,11 +127,6 @@ const App = () => {
         <Stack.Screen
           name="SelectLoginScreen"
           component={SelectLoginScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="OTPScreen"
-          component={OTPScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen

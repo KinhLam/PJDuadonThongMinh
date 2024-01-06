@@ -1,160 +1,265 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, ScrollView, StyleSheet, Text, TextInput, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import IconBack from '../../components/IconBack';
+import IconVector from '../../components/IconVector';
 import CustomButton from '../../components/CustomButton';
+import Modal from 'react-native-modal'; // Import thư viện modal
 
 const LoginNumberScreen = () => {
   const navigation = useNavigation();
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [error, setError] = useState(''); // State để lưu thông báo lỗi
-  const [isError, setIsError] = useState(false); // State để xác định xem có lỗi hay không
+  const [otp, setOTP] = useState(['', '', '', '']);
+  const [resendTime, setResendTime] = useState(30);
+  const [isResendDisabled, setIsResendDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false); // State để quản lý hiển thị modal lỗi
 
-  const handleContinue = () => {
-    // Kiểm tra nếu số điện thoại chưa được nhập hoặc không đúng định dạng
-    if (!/^(0\d{9})$/.test(phoneNumber)) {
-      setError('Vui lòng nhập đúng số điện thoại');
-      setIsError(true);
-      return;
+  const inputRefs = useRef([]);
+
+  useEffect(() => {
+    const isAnyEmpty = otp.some(value => value === '');
+    const isAnyFocused = inputRefs.current.some(ref => ref.isFocused());
+
+    if (isAnyEmpty && !isAnyFocused) {
+      inputRefs.current[0].focus();
+    }
+  }, [otp]);
+
+  useEffect(() => {
+    let timer;
+
+    if (resendTime > 0) {
+      timer = setInterval(() => {
+        setResendTime(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
+      }, 1000);
+    } else {
+      setIsResendDisabled(false);
+      clearInterval(timer);
     }
 
-    // Xử lý sự kiện khi nhấn nút "Tiếp tục"
-    console.log('Số điện thoại: ', phoneNumber);
-    navigation.navigate('OTPScreen');
+    return () => {
+      clearInterval(timer);
+    };
+  }, [resendTime]);
+
+  const handleContinue = () => {
+    // Hiển thị màn hình chờ
+    setIsLoading(true);
+
+    // Simulate loading for 2 seconds
+    setTimeout(() => {
+      setIsLoading(false);
+
+      // TODO: Add logic to check if OTP is correct
+      const isOTPCorrect = otp.join('') === '1234'; // Change '1234' to your correct OTP
+
+      if (isOTPCorrect) {
+        navigation.navigate('HomeTabNavigator');
+      } else {
+        // Hiển thị modal lỗi
+        setIsErrorModalVisible(true);
+      }
+    }, 2000);
   };
 
   const handleBackPress = () => {
     navigation.goBack();
   };
 
+  const handleResend = () => {
+    setIsResendDisabled(true);
+    setResendTime(30);
+
+    const timer = setInterval(() => {
+      setResendTime(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  };
+
+  const handleInputChange = (index, text) => {
+    const newOTP = [...otp];
+    newOTP[index] = text;
+
+    if (text && index < 3) {
+      inputRefs.current[index + 1].focus();
+    } else if (!text && index > 0) {
+      inputRefs.current[index - 1].focus();
+    }
+
+    setOTP(newOTP);
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
+    <ScrollView style={styles.container}>
+      <View style={styles.headerIcon}>
         <IconBack onPress={handleBackPress} style={styles.styleIcon} />
       </View>
-      <View style={styles.logoContainer}>
-        <Image
-          source={require('../../assets/driver-bro.png')}
-          style={styles.logo}
+
+      <View style={{ padding: 20, marginLeft: 10 }}>
+        <View style={{ marginBottom: 10 }}>
+          <Text style={styles.textTitle}>Xác minh tài khoản</Text>
+        </View>
+        <View style={{ marginTop: 10, paddingRight: '15%' }}>
+          <Text style={styles.textHeader}>
+            Chúng tôi đã gửi mã xác minh tới số điện thoại của bạn
+          </Text>
+        </View>
+      </View>
+
+      <View style={styles.otpContainer}>
+        {otp.map((value, index) => (
+          <TextInput
+            key={index}
+            ref={ref => (inputRefs.current[index] = ref)}
+            style={styles.otpInput}
+            keyboardType="numeric"
+            maxLength={1}
+            value={value}
+            onChangeText={text => handleInputChange(index, text)}
+          />
+        ))}
+      </View>
+
+      <View style={{ marginBottom: 20 }}>
+        {/* Sử dụng biến isLoading để kiểm tra và hiển thị màn hình chờ */}
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#23AC41" />
+        ) : (
+          <CustomButton
+            title="Tiếp tục"
+            onPress={handleContinue}
+            style={styles.button}
+            textStyle={[styles.textButton, { color: 'white' }]}
+            uppercase={true}
+          />
+        )}
+        <IconVector
+          library="AntDesign"
+          name="arrowright"
+          size={20}
+          color="#f7f7f7"
+          style={styles.iconButton}
         />
       </View>
-      <View style={styles.titleContainer}>
-        <Text style={[styles.title, styles.registerTitle]}>Xin chào!</Text>
+
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {resendTime > 0 ? (
+          <Text style={styles.textHeader}>
+            Gửi lại mã sau {resendTime} giây
+          </Text>
+        ) : (
+          <Text
+            style={styles.textHeader}
+            onPress={handleResend}
+            disabled={isResendDisabled}
+          >
+            Gửi lại mã
+          </Text>
+        )}
       </View>
-      <View style={styles.inputContainer}>
-        <View
-          style={[
-            styles.inputWrapper,
-            isError && styles.errorInputWrapper, // Sử dụng kiểu dáng errorInputWrapper nếu có lỗi
-          ]}>
-          <TextInput
-            placeholder="Số điện thoại"
-            style={styles.input}
-            keyboardType="numeric"
-            value={phoneNumber}
-            onChangeText={text => {
-              setPhoneNumber(text);
-              setError(''); // Xóa thông báo lỗi khi người dùng thay đổi số điện thoại
-              setIsError(false); // Gỡ đánh dấu có lỗi
-            }}
+
+      {/* Modal hiển thị thông báo lỗi */}
+      <Modal isVisible={isErrorModalVisible}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalTitle}>Thông báo</Text>
+          <Text style={styles.modalText}>Mã OTP không đúng. Vui lòng thử lại.</Text>
+          <CustomButton
+            title="Đóng"
+            onPress={() => setIsErrorModalVisible(false)}
+            style={styles.modalButton}
+            textStyle={{ color: 'white' }}
           />
         </View>
-        {/* Hiển thị thông báo lỗi */}
-        <Text style={styles.errorText}>{error}</Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <CustomButton
-          title="Tiếp tục"
-          onPress={handleContinue}
-          mode="contained"
-          style={[styles.button, {backgroundColor: '#DE720F'}]}
-          textStyle={styles.buttonText}
-        />
-      </View>
-    </View>
+      </Modal>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 30,
+    backgroundColor: '#ffffff',
   },
-  header: {
+  styleIcon: {
+    marginLeft: 10,
+    marginTop: '10%',
+  },
+  headerIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 10,
   },
-  logoContainer: {
-    // flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logo: {
-    width: 308,
-    height: 250,
-    marginTop: '10%',
-  },
-  titleContainer: {
-    // flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-  },
-  title: {
+  textTitle: {
     fontSize: 24,
+    fontWeight: 'medium',
+    color: '#120D26',
+    marginTop: -20,
   },
-  registerTitle: {
-    fontSize: 30,
-    fontWeight: '500',
-    // marginTop: '20%',
+  textHeader: {
+    fontSize: 15,
+    fontWeight: '300',
+    color: '#120D26',
+    lineHeight: 24,
   },
-  inputContainer: {
-    marginTop: '10%',
-    justifyContent: 'center',
-    padding: 5,
-  },
-  inputWrapper: {
-    borderRadius: 20,
-    marginBottom: 10, // Khoảng cách từ input đến thông báo lỗi
-  },
-  errorInputWrapper: {
-    borderColor: 'red', // Màu viền đỏ khi có lỗi
-  },
-  input: {
-    height: 60,
-    padding: 20,
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: '#d8cdcd',
-  },
-  buttonContainer: {
-    // justifyContent: 'center',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+  iconButton: {
+    position: 'absolute',
+    top: '50%',
+    right: 15,
+    transform: [{ translateX: -70 }, { translateY: -8 }],
   },
   button: {
-    // height: ,
-    width: '80%',
+    height: 55,
+    width: 271,
     padding: 10,
+    marginTop: 5,
+    marginLeft: '15%',
     borderRadius: 15,
+    backgroundColor: '#23AC41',
   },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: '300',
-    color: 'white',
+  otpContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 30,
   },
-  errorText: {
-    color: 'red',
-    marginTop: 10, // Khoảng cách từ thông báo lỗi đến nút tiếp tục
+  otpInput: {
+    height: 55,
+    width: 55,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 10,
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: '500',
+    marginRight: 10,
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    padding: 22,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 20,
+    marginBottom: 10,
+    fontWeight: 'bold',
+    color: '#120D26',
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 20,
+    color: '#120D26',
+  },
+  modalButton: {
+    backgroundColor: '#23AC41',
+    borderRadius: 10,
+    padding: 10,
+    width: 150,
   },
 });
 

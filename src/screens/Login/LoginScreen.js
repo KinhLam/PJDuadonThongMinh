@@ -111,6 +111,7 @@ const LoginScreen = () => {
     </ScrollView>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -155,13 +156,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '50%',
     left: 15,
-    transform: [{translateY: -13}],
+    transform: [{ translateY: -13 }],
   },
   iconButton: {
     position: 'absolute',
     top: '50%',
     right: 15,
-    transform: [{translateX: -50}, {translateY: -4}],
+    transform: [{ translateX: -50 }, { translateY: -4 }],
   },
   inputNumber: {
     height: 55,
