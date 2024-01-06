@@ -10,6 +10,7 @@ import ScrennsDriver from './src/screens/Driver/ScrennsDriver';
 // Login
 import WelcomeScreen from './src/screens/Login/WelcomeScreen';
 import RegisterScreen from './src/screens/Login/RegisterScreen';
+import SelectLoginScreen from './src/screens/Login/SelectLoginScreen';
 import LoginScreen from './src/screens/Login/LoginScreen';
 import LoginNumberScreen from './src/screens/Login/LoginNumberScreen';
 import OTPScreen from './src/screens/Login/OTPScreen';
@@ -29,7 +30,6 @@ import HoanThanhChuyenXeScreen from './src/screens/Traffic/HoanThanhChuyenXeScre
 // Components
 import IconBack from './src/components/IconBack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -99,7 +99,11 @@ const HomeTabNavigator = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <Stack.Navigator initialRouteName="WelcomeScreen">
         <Stack.Screen
           name="WelcomeScreen"
@@ -119,6 +123,11 @@ const App = () => {
         <Stack.Screen
           name="LoginScreen"
           component={LoginScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SelectLoginScreen"
+          component={SelectLoginScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen

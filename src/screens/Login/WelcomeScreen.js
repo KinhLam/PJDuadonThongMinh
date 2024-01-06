@@ -10,7 +10,7 @@ const WelcomeScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-      navigation.navigate('LoginScreen');
+      navigation.navigate('SelectLoginScreen');
     }, 2000);
 
     // Clear the timeout if the component unmounts or loses focus
