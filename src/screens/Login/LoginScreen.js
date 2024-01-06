@@ -66,8 +66,8 @@ const LoginScreen = () => {
             style={styles.inputNumber}
             keyboardType="numeric"
             value={phoneNumber}
-            onChangeText={(text) => {
-              setPhoneNumber(text);
+            onChangeText={(number) => {
+              setPhoneNumber(number);
               setError('');
               setIsError(true);
             }}

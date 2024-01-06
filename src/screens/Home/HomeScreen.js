@@ -11,12 +11,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({navigation}) => {
   const handleTransportPress = () => {
     navigation.navigate('TransportScreen');
   };
@@ -66,8 +66,7 @@ const HomeScreen = ({ navigation }) => {
                   borderColor: '#53B175',
                 },
               ]}
-              onPress={handleTransportPress}
-              >
+              onPress={handleTransportPress}>
               <Image
                 style={styles.rectangleImage}
                 source={require('../../assets/home/gps-navigation.png')}
@@ -173,6 +172,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   headerBackground: {
     resizeMode: 'cover',
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   rectangleImage: {
-    width: '80%',  // Adjust the width as needed
+    width: '80%', // Adjust the width as needed
     height: 100, // Adjust the height as needed
     borderRadius: 40, // half of width and height to make it circular
     marginBottom: 10, // spacing between image and text

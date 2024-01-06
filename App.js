@@ -42,10 +42,12 @@ const HomeTabNavigator = () => {
         tabBarStyle: {
           height: 70,
           paddingBottom: 15,
+          backgroundColor: '#ffffff',
         },
         tabBarLabelStyle: {
           fontSize: 12,
         },
+        tabBarActiveTintColor: '#23AC41', // Set active tab color here
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
@@ -62,7 +64,13 @@ const HomeTabNavigator = () => {
           }
 
           // Return the Ionicons component with the correct name
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return (
+            <Ionicons
+              name={iconName}
+              size={size}
+              color={focused ? '#23AC41' : color}
+            />
+          );
         },
       })}>
       <Tab.Screen
@@ -93,7 +101,6 @@ const HomeTabNavigator = () => {
     </Tab.Navigator>
   );
 };
-
 // Main App
 const App = () => {
   return (
