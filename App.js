@@ -26,6 +26,7 @@ import TransportScreen from './src/screens/Traffic/TransportScreen';
 import LoTrinh_DatXe from './src/screens/Traffic/LoTrinhDatXeScreen';
 import LoTrinhChuyenDiScreen from './src/screens/Traffic/LoTrinhChuyenDiScreen';
 import HoanThanhChuyenXeScreen from './src/screens/Traffic/HoanThanhChuyenXeScreen';
+import ThanhToan from './src/screens/Traffic/ThanhToan';
 // Components
 import IconBack from './src/components/IconBack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -164,6 +165,11 @@ const App = () => {
         <Stack.Screen
           name="LoTrinhChuyenDiScreen"
           component={LoTrinhChuyenDiScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ThanhToan"
+          component={ThanhToan}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

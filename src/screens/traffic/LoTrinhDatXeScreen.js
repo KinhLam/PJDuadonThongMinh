@@ -5,6 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import DatePicker from 'react-native-datepicker';
 const ArrivingSection = ({ onCancel, onConfirm }) => {
     return (
+        
         <View style={styles.EnventXacNhanHuyChuyen1}>
             <View style={styles.EnventXacNhanHuyChuyen}>
                 <Text style={styles.TextTenTaiXe}>Tx Lâm Đức Kính</Text>
@@ -52,7 +53,7 @@ const LoTrinh_DatXe = () => {
     const handleConfirm = () => {
         // Xử lý logic khi xác nhận chuyến
         setShowArrivingSection(true);
-        navigation.navigate('LoTrinhChuyenDiScreen');
+        navigation.navigate('ThanhToan');
     };
 
     return (
@@ -70,23 +71,16 @@ const LoTrinh_DatXe = () => {
                         style={styles.TextinputText}
                         placeholder="Vị trí của bạn"
                     />
-                    <TextInput
-                        style={styles.TextinputText}
-                        placeholder="Vị trí của bạn"
-                    >
-                        Trường đại học Lạc Hồng (cơ sở 1)...
-                    </TextInput>
+                    
                 </View>
                 <View>
-                    <Image
-                        style={styles.imageMap}
-                        source={require('./../../assets/anh_map.jpg')}
-                    />
+                   
                 </View>
                 <View>
                     {!showArrivingSection ? (
                         <View>
                             <View>
+                                <Text style={styles.textsieure}>Siêu rẻ</Text>
                                 <View style={styles.MarginPhuongThuc}>
                                     <TouchableOpacity
                                         style={styles.buttonChonXe}
@@ -103,6 +97,43 @@ const LoTrinh_DatXe = () => {
                                     >
                                         <Text>Xe 7 chỗ</Text>
                                         <Text>50.000đ</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View>
+                                    <TouchableOpacity
+                                        style={styles.buttonChonXe}
+                                        onPress={() => handleSelectCar(1000000)}
+                                    >
+                                        <Text>Xe 30 chỗ</Text>
+                                        <Text>100.000đ</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <Text style={styles.textsieure}>Siêu tốc</Text>
+                                <View style={styles.MarginPhuongThuc}>
+                                    <TouchableOpacity
+                                        style={styles.buttonChonXe}
+                                        onPress={() => handleSelectCar(100000)}
+                                    >
+                                        <Text>Xe 4 chỗ</Text>
+                                        <Text>100.000đ</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View>
+                                    <TouchableOpacity
+                                        style={styles.buttonChonXe}
+                                        onPress={() => handleSelectCar(200000)}
+                                    >
+                                        <Text>Xe 7 chỗ</Text>
+                                        <Text>200.000đ</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View>
+                                    <TouchableOpacity
+                                        style={styles.buttonChonXe}
+                                        onPress={() => handleSelectCar(3000000)}
+                                    >
+                                        <Text>Xe 30 chỗ</Text>
+                                        <Text>300.000đ</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -153,7 +184,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         height: 'auto',
         borderRadius: 10,
-        paddingBottom: 90
+        paddingBottom: 90,
+        marginTop: 200
     },
     TextTenTaiXe: {
         fontSize: 20,
@@ -177,7 +209,7 @@ const styles = StyleSheet.create({
         marginBottom: 30,
     },
     confirmButton: {
-        backgroundColor: '#FF9736',
+        backgroundColor: '#23AC41',
         padding: 15,
         borderRadius: 10,
         marginTop: 10,
@@ -188,14 +220,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     cancelButton: {
-        backgroundColor: '#FF9736',
+        backgroundColor: '#FF0000',
         padding: 15,
         borderRadius: 10,
         marginTop: 10,
         alignItems: 'center',
     },
     TextInputView: {
-        backgroundColor: '#FF9736',
+        backgroundColor: '#23AC41',
     },
     TextinputText: {
         padding: 7,
@@ -220,9 +252,11 @@ const styles = StyleSheet.create({
     BoderPhuongThuc: {
         borderColor: 'black',
         borderWidth: 1,
-        marginTop: 22,
+        marginTop: 184,
         paddingBottom: 20,
-        borderRadius: 10
+        borderRadius: 10,
+        
+        
 
     },
     TextPhuongThuc1: {
@@ -261,7 +295,7 @@ const styles = StyleSheet.create({
 
         marginLeft: 35,
         marginRight: 35,
-        backgroundColor: '#FF9736',
+        backgroundColor: '#23AC41',
         padding: 12,
         borderRadius: 10,
     },
@@ -282,13 +316,14 @@ const styles = StyleSheet.create({
 
     },
     backButton: {
-        backgroundColor: '#FF9736'
+        backgroundColor: '#23AC41'
     },
     headerContainer1: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: '#FF9736',
+        backgroundColor: '#23AC41',
         alignItems: 'center',
+        paddingTop: 20,
     },
     headerContainer2: {
         textAlign: 'center',
@@ -296,6 +331,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'white',
+    },
+    textsieure: {
+        fontSize: 17,
+        fontWeight: "bold",
+        marginTop:10,
+        marginLeft:5,
+
     }
 
 });
+

@@ -21,7 +21,7 @@ const LoginScreen = () => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fixedPhoneNumber = '0987654321'; // Số điện thoại cố định
+  const fixedPhoneNumber = '0987654321'; // Số điện thoại cố định 0987654321
 
   const handleContinue = () => {
     setIsLoading(true);

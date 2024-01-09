@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 18,
-    backgroundColor: '#FF9736',
+    backgroundColor: '#23AC41',
     marginBottom: 20,
     width: '100%'
   },
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   confirmButton: {
-    backgroundColor: '#FFA500',
+    backgroundColor: '#23AC41',
     padding: 20,
     borderRadius: 10,
     marginTop: 5,
